@@ -1,0 +1,15 @@
+import { chromium } from '@playwright/test';
+import { mkdir } from 'node:fs/promises';
+await mkdir('screenshots', { recursive: true });
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+await page.goto('http://localhost:4174');
+await page.locator('#count').waitFor({ state: 'visible' });
+await page.screenshot({ path: 'screenshots/desktop-start.png', fullPage: true });
+await page.locator('#start').click();
+await page.locator('#draw').click();
+await page.waitForTimeout(2200);
+await page.screenshot({ path: 'screenshots/desktop-draw.png', fullPage: true });
+await page.setViewportSize({ width: 390, height: 844 });
+await page.screenshot({ path: 'screenshots/mobile-draw.png', fullPage: true });
+await browser.close();

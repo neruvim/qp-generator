@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:4173:8080"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
