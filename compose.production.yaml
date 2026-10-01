@@ -1,0 +1,12 @@
+services:
+  app:
+    networks:
+      default:
+      gateway:
+        aliases:
+          - qp-generator
+
+networks:
+  gateway:
+    external: true
+    name: ${GATEWAY_NETWORK:?Set GATEWAY_NETWORK to the reverse proxy Docker network}
