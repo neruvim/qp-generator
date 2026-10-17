@@ -1,7 +1,6 @@
 services:
   app:
     networks:
-      default:
       gateway:
         aliases:
           - qp-generator
